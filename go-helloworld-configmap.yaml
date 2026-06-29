@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-helloworld-config
+  namespace: test
+data:
+  GREETING: "Hello World V3"

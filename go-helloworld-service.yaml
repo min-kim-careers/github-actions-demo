@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-helloworld
+  namespace: test
+spec:
+  selector:
+    app: go-helloworld
+  type: ClusterIP
+  ports:
+    - port: 6111
+      targetPort: 6112

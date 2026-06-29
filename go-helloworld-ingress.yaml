@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-helloworld
+  namespace: test
+  labels:
+    app.kubernetes.io/name: go-helloworld
+spec:
+  rules:
+  - host: go-helloworld.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: go-helloworld
+            port: 
+              number: 6112

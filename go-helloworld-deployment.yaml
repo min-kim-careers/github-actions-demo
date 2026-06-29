@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-helloworld
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-helloworld
+  template:
+    metadata:
+      labels:
+        app: go-helloworld
+    spec:
+      containers:
+        - name: go-helloworld
+          image: kibon/go-helloworld:v3.0.0
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+
+          ports:
+            - containerPort: 6112
+
+          envFrom:
+            - configMapRef:
+                name: go-helloworld-config
+            - secretRef:
+                name: go-helloworld-secret
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 6112
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6112
+          
