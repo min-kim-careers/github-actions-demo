@@ -1,11 +1,11 @@
-FROM golang:alpine AS base
+FROM golang:alpine
 
 WORKDIR /go/src/app
 
 ADD . .
 
-RUN go mod init && go build -o go-helloworld
+RUN go build -o helloworld
 
-EXPOSE 6111
+EXPOSE 6112
 
 CMD ["./helloworld"]
